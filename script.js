@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
         }
     });
 
@@ -175,7 +175,7 @@ style.textContent = `
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(0, 212, 255, 0.3);
         transform: scale(0);
         animation: ripple-animation 0.6s linear;
         pointer-events: none;

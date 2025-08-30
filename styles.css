@@ -5,16 +5,19 @@
 }
 
 :root {
-    --primary-color: #3b82f6;
-    --secondary-color: #1e40af;
-    --accent-color: #06b6d4;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f9fafb;
-    --border-color: #e5e7eb;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --primary-color: #00d4ff;
+    --secondary-color: #0099cc;
+    --accent-color: #00ffaa;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-tertiary: #808080;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --border-color: #333333;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --glow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
 body {
@@ -35,9 +38,10 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all 0.3s ease;
 }
@@ -110,8 +114,30 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     padding-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 170, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-content {
@@ -213,18 +239,53 @@ body {
     justify-content: center;
     width: 50px;
     height: 50px;
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
     border-radius: 50%;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: var(--glow);
+}
+
+.social-links a:hover::before {
+    opacity: 1;
+}
+
+.social-links a[href*="github"]:hover {
+    color: #333;
+    background: #fff;
+}
+
+.social-links a[href*="linkedin"]:hover {
+    color: #0077b5;
+    background: #fff;
+}
+
+.social-links a[href*="mailto"]:hover {
+    color: #ea4335;
+    background: #fff;
 }
 
 /* Sections */
@@ -268,9 +329,10 @@ section h2 {
 
 .education-item {
     padding: 1.5rem;
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .education-item h4 {
@@ -286,9 +348,17 @@ section h2 {
 
 .certifications li {
     padding: 0.75rem 1rem;
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     border-radius: 0.5rem;
     border-left: 4px solid var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.certifications li:hover {
+    transform: translateX(5px);
+    border-left-color: var(--accent-color);
 }
 
 /* Skills Section */
@@ -300,15 +370,35 @@ section h2 {
 }
 
 .skill-category {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: left 0.5s ease;
 }
 
 .skill-category:hover {
     transform: translateY(-5px);
+    box-shadow: var(--glow);
+    border-color: var(--primary-color);
+}
+
+.skill-category:hover::before {
+    left: 100%;
 }
 
 .skill-category h3 {
@@ -350,7 +440,8 @@ section h2 {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: var(--primary-color);
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 .timeline-item {
@@ -369,6 +460,14 @@ section h2 {
     background: var(--primary-color);
     border-radius: 50%;
     border: 3px solid var(--bg-primary);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.6); }
+    50% { box-shadow: 0 0 25px rgba(0, 212, 255, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.6); }
 }
 
 .timeline-date {
@@ -378,10 +477,11 @@ section h2 {
 }
 
 .timeline-content {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .timeline-content h3 {
@@ -424,16 +524,35 @@ section h2 {
 }
 
 .project-card {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.1), transparent);
+    transition: left 0.5s ease;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--glow);
+    border-color: var(--accent-color);
+}
+
+.project-card:hover::before {
+    left: 100%;
 }
 
 .project-card h3 {
@@ -456,10 +575,18 @@ section h2 {
 
 .project-tech span {
     padding: 0.25rem 0.75rem;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     color: var(--text-secondary);
     border-radius: 1rem;
     font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.project-tech span:hover {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+    transform: scale(1.05);
 }
 
 /* Contact Section */
@@ -478,9 +605,17 @@ section h2 {
     gap: 1rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
 }
 
 .contact-item i {
@@ -521,10 +656,11 @@ section h2 {
 }
 
 .reference-card {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .reference-card h4 {
@@ -550,10 +686,11 @@ section h2 {
 
 /* Footer */
 footer {
-    background: var(--text-primary);
-    color: white;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     padding: 2rem 0;
     text-align: center;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-social {
@@ -561,14 +698,104 @@ footer {
 }
 
 .footer-social a {
-    color: white;
+    color: var(--text-secondary);
     font-size: 1.25rem;
     margin: 0 0.5rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
 }
 
 .footer-social a:hover {
-    color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-2px) scale(1.1);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+
+/* Domain-specific icons and effects */
+.fab.fa-github::before {
+    content: '\f09b';
+    color: #fff;
+    background: #333;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.fab.fa-linkedin::before {
+    content: '\f0e1';
+    color: #fff;
+    background: #0077b5;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.fas.fa-envelope::before {
+    content: '\f0e0';
+    color: #fff;
+    background: #ea4335;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.fas.fa-phone::before {
+    content: '\f095';
+    color: #fff;
+    background: #34a853;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.fas.fa-map-marker-alt::before {
+    content: '\f3c5';
+    color: #fff;
+    background: #fbbc05;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+/* Tech stack icons with domain colors */
+.skill-tag {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Loading spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* Responsive Design */
