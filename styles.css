@@ -755,14 +755,201 @@ footer {
 }
 
 /* Tech stack icons with domain colors */
-.skill-tag {
+.skill-tag, .project-tech span {
     position: relative;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.skill-tag:hover {
+.skill-tag:hover, .project-tech span:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Language-specific colors */
+.skill-tag.typescript:hover, .tech-typescript:hover {
+    background: #3178c6 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(49, 120, 198, 0.4);
+}
+
+.skill-tag.javascript:hover, .tech-javascript:hover {
+    background: #f7df1e !important;
+    color: black !important;
+    box-shadow: 0 5px 15px rgba(247, 223, 30, 0.4);
+}
+
+.skill-tag.python:hover, .tech-python:hover {
+    background: #3776ab !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(55, 118, 171, 0.4);
+}
+
+.skill-tag.rust:hover, .tech-rust:hover {
+    background: #000000 !important;
+    color: #ce422b !important;
+    box-shadow: 0 5px 15px rgba(206, 66, 43, 0.4);
+}
+
+.skill-tag.java:hover, .tech-java:hover {
+    background: #ed8b00 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(237, 139, 0, 0.4);
+}
+
+/* Frontend framework colors */
+.skill-tag.react:hover, .tech-react:hover {
+    background: #61dafb !important;
+    color: #282c34 !important;
+    box-shadow: 0 5px 15px rgba(97, 218, 251, 0.4);
+}
+
+.skill-tag.nextjs:hover, .tech-nextjs:hover {
+    background: #000000 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.skill-tag.react-native:hover, .tech-react-native:hover {
+    background: #61dafb !important;
+    color: #282c34 !important;
+    box-shadow: 0 5px 15px rgba(97, 218, 251, 0.4);
+}
+
+.skill-tag.tailwind:hover, .tech-tailwind:hover {
+    background: #06b6d4 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+}
+
+.skill-tag.antd:hover, .tech-antd:hover {
+    background: #1890ff !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(24, 144, 255, 0.4);
+}
+
+/* Backend framework colors */
+.skill-tag.nodejs:hover, .tech-nodejs:hover {
+    background: #339933 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(51, 153, 51, 0.4);
+}
+
+.skill-tag.graphql:hover, .tech-graphql:hover {
+    background: #e10098 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(225, 0, 152, 0.4);
+}
+
+.skill-tag.rest:hover, .tech-rest:hover {
+    background: #25d366 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+.skill-tag.fastify:hover, .tech-fastify:hover {
+    background: #000000 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.skill-tag.express:hover, .tech-express:hover {
+    background: #000000 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Database and cloud colors */
+.skill-tag.postgresql:hover, .tech-postgresql:hover {
+    background: #336791 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(51, 103, 145, 0.4);
+}
+
+.skill-tag.mongodb:hover, .tech-mongodb:hover {
+    background: #47a248 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(71, 162, 72, 0.4);
+}
+
+.skill-tag.redis:hover, .tech-redis:hover {
+    background: #dc382d !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(220, 56, 45, 0.4);
+}
+
+.skill-tag.elasticsearch:hover, .tech-elasticsearch:hover {
+    background: #005571 !important;
+    color: #fec514 !important;
+    box-shadow: 0 5px 15px rgba(0, 85, 113, 0.4);
+}
+
+.skill-tag.gcp:hover, .tech-gcp:hover {
+    background: #4285f4 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+}
+
+.skill-tag.aws:hover, .tech-aws:hover {
+    background: #ff9900 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
+}
+
+.skill-tag.kubernetes:hover, .tech-kubernetes:hover {
+    background: #326ce5 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(50, 108, 229, 0.4);
+}
+
+.skill-tag.docker:hover, .tech-docker:hover {
+    background: #2496ed !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(36, 150, 237, 0.4);
+}
+
+/* Additional project-specific tech colors */
+.tech-auth0:hover {
+    background: #eb5424 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(235, 84, 36, 0.4);
+}
+
+.tech-pdf:hover {
+    background: #ff0000 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.tech-vite:hover {
+    background: #646cff !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(100, 108, 255, 0.4);
+}
+
+.tech-bun:hover {
+    background: #fbf0df !important;
+    color: #000000 !important;
+    box-shadow: 0 5px 15px rgba(251, 240, 223, 0.4);
+}
+
+.tech-bash:hover {
+    background: #4eaa25 !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(78, 170, 37, 0.4);
+}
+
+.tech-linux:hover {
+    background: #fcc624 !important;
+    color: black !important;
+    box-shadow: 0 5px 15px rgba(252, 198, 36, 0.4);
+}
+
+/* Icon styling */
+.skill-tag i, .project-tech span i {
+    font-size: 1rem;
+    margin-right: 0.25rem;
 }
 
 /* Scrollbar styling for dark theme */

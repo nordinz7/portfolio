@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             if (scrollY >= (sectionTop - 200)) {
                 current = section.getAttribute('id');
             }
@@ -91,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add typing effect to hero title
     const heroTitle = document.querySelector('.hero h1');
     const originalText = heroTitle.innerHTML;
-    const textToType = "👋 Hi, I'm Nordin Zahari";
     
     function typeWriter(text, element, speed = 100) {
         element.innerHTML = '';
